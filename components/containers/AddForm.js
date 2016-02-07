@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addTodo} from '../../actions';
+import {addTodo, receiveTodos} from '../../actions';
 import TodoList from './TodoList';
 
 class AddForm extends React.Component {
   render() {
     let input;
     const {dispatch, Todos} = this.props;
-
+    console.log(this.props);
     return (
       <div>
         <input ref={node => {
@@ -20,13 +20,20 @@ class AddForm extends React.Component {
             }}>Add</button>
 
           <TodoList todos={Todos} />
-
+          <button onClick={this.uploadTodos.bind(null, dispatch)}>Подгрузи тудуськи</button>
           </div>
         );
       }
-      todoClick(id){
-        console.log(id);
-        // dispatch(completeTodo(id));
+      uploadTodos(dispatch){
+        // dispatch(receiveTodos('sdsdsd'));
+        fetch('/todos.json')
+        .then(function(response) {
+          return response.json()
+        }).then(function(json) {
+          dispatch(receiveTodos(json));
+        }).catch(function(ex) {
+          console.log('parsing failed', ex)
+        });
       }
     }
 

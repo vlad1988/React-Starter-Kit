@@ -13,5 +13,11 @@ export const completeTodo = (id, completed) => {
     id,
     completed
   };
-  // console.log(id);
+}
+
+export const receiveTodos = (id) => {
+  return {
+    type: 'RECEIVE_TODOS',
+    id
+  };
 }

@@ -1,16 +1,16 @@
 function retrieve(state, action) {
   switch (action.type) {
     case 'COMPLETE_TODO':
-      if (state.id !== action.id) {
-        return state
-      }
-
-      return {
-        ...state,
-        completed: !action.completed
-      }
-    default:
+    if (state.id !== action.id) {
       return state
+    }
+
+    return {
+      ...state,
+      completed: !action.completed
+    }
+    default:
+    return state
   }
 }
 
@@ -28,9 +28,9 @@ const todo = (state = [], action) => {
     ];
     break;
     case 'COMPLETE_TODO':
-      return state.map(t =>
-        retrieve(t, action)
-      )
+    return state.map(t =>
+      retrieve(t, action)
+    )
     default:
     return state;
 
