@@ -7,9 +7,15 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel'
+        loader: 'babel-loader'
       }
-    ]
+    ],
+    // rules: [
+    //   {
+    //     test: /\.css$/,
+    //     use: [ 'style-loader', 'css-loader' ]
+    //   }
+    // ]
   },
   output: {filename: './public/bundle.js'},
   plugins: [
